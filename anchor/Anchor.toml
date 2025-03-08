@@ -13,10 +13,10 @@ url = "https://api.apr.dev"
 
 [provider]
 cluster = "Localnet"
-wallet = "~/.config/solana/id.json"
+wallet = "./tests/fixtures/keys/program-owner.json"
 
 [scripts]
-test = "../node_modules/.bin/jest --preset ts-jest"
+test = "../node_modules/.bin/vitest --dir ./"
 
 [test]
 startup_wait = 5000
@@ -25,5 +25,5 @@ upgradeable = false
 
 [test.validator]
 bind_address = "127.0.0.1"
-ledger = ".anchor/test-ledger"
+ledger = "../solana-ledger"
 rpc_port = 8899
