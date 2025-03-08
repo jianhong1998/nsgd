@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-nsgd = "coUnmi3oBUtwtd9fjeAvSsJssXh5A5xyPbhpewyzRVF"
+nsgd = "CH75SSAuYPUUbudAcvm3bbTdfTkaUTPMYzVZZH6TNR9T"
 
 [registry]
 url = "https://api.apr.dev"

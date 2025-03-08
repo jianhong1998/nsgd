@@ -5,7 +5,7 @@ mod instructions;
 use anchor_lang::prelude::*;
 use instructions::*;
 
-declare_id!("coUnmi3oBUtwtd9fjeAvSsJssXh5A5xyPbhpewyzRVF");
+declare_id!("CH75SSAuYPUUbudAcvm3bbTdfTkaUTPMYzVZZH6TNR9T");
 
 #[program]
 pub mod nsgd {
