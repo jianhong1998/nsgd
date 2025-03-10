@@ -1,7 +1,7 @@
 use crate::{
   constants::{
-    ErrorCode, ACCOUNT_DISCRIMINATOR, BANK_SEED, COLLECTION_TOKEN_ACCOUNT_SEED, METADATA_SEED,
-    TOKEN_METADATA_URL, TOKEN_MINT_SEED, TOKEN_NAME, TOKEN_SYMBOL,
+    ErrorCode, ACCOUNT_DISCRIMINATOR, BANK_SEED, METADATA_SEED, TOKEN_METADATA_URL,
+    TOKEN_MINT_SEED, TOKEN_NAME, TOKEN_SYMBOL,
   },
   states::Bank,
 };
@@ -9,7 +9,7 @@ use anchor_lang::prelude::*;
 use anchor_spl::{
   associated_token::AssociatedToken,
   metadata::Metadata,
-  token_interface::{Mint, Token2022, TokenAccount},
+  token_interface::{Mint, Token2022},
 };
 use mpl_token_metadata::{instructions::CreateV1CpiBuilder, types::TokenStandard};
 
@@ -44,18 +44,6 @@ pub struct InitBank<'info> {
     bump
   )]
   pub bank: Box<Account<'info, Bank>>,
-
-  #[account(
-    init,
-    payer = signer,
-    seeds = [
-      COLLECTION_TOKEN_ACCOUNT_SEED
-    ],
-    bump,
-    token::mint = mint,
-    token::authority = collection_token_account
-  )]
-  pub collection_token_account: Box<InterfaceAccount<'info, TokenAccount>>,
 }
 
 #[derive(Accounts)]
@@ -90,15 +78,6 @@ pub struct InitToken<'info> {
   #[account(
     mut,
     seeds = [
-      COLLECTION_TOKEN_ACCOUNT_SEED
-    ],
-    bump,
-  )]
-  pub collection_token_account: Box<InterfaceAccount<'info, TokenAccount>>,
-
-  #[account(
-    mut,
-    seeds = [
       METADATA_SEED,
       token_metadata_program.key().as_ref(),
       mint.key().as_ref(),
@@ -122,11 +101,9 @@ pub fn process_init_bank(context: Context<InitBank>) -> Result<()> {
   msg!("Processing bank initialization...");
   bank.authority = signer.key();
   bank.token_mint = mint.key();
-  bank.collection_token_account = context.accounts.collection_token_account.key();
   bank.is_initialized = true;
   bank.bump = context.bumps.bank;
   bank.mint_bump = context.bumps.mint;
-  bank.collection_token_account_bump = context.bumps.collection_token_account;
   msg!("Bank initialized ✅");
 
   Ok(())

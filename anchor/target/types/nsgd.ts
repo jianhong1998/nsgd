@@ -78,43 +78,6 @@ export type Nsgd = {
               }
             ]
           }
-        },
-        {
-          "name": "collectionTokenAccount",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  99,
-                  111,
-                  108,
-                  108,
-                  101,
-                  99,
-                  116,
-                  105,
-                  111,
-                  110,
-                  95,
-                  116,
-                  111,
-                  107,
-                  101,
-                  110,
-                  95,
-                  97,
-                  99,
-                  99,
-                  111,
-                  117,
-                  110,
-                  116
-                ]
-              }
-            ]
-          }
         }
       ],
       "args": []
@@ -200,43 +163,6 @@ export type Nsgd = {
           }
         },
         {
-          "name": "collectionTokenAccount",
-          "writable": true,
-          "pda": {
-            "seeds": [
-              {
-                "kind": "const",
-                "value": [
-                  99,
-                  111,
-                  108,
-                  108,
-                  101,
-                  99,
-                  116,
-                  105,
-                  111,
-                  110,
-                  95,
-                  116,
-                  111,
-                  107,
-                  101,
-                  110,
-                  95,
-                  97,
-                  99,
-                  99,
-                  111,
-                  117,
-                  110,
-                  116
-                ]
-              }
-            ]
-          }
-        },
-        {
           "name": "metadata",
           "writable": true,
           "pda": {
@@ -310,10 +236,6 @@ export type Nsgd = {
             "type": "pubkey"
           },
           {
-            "name": "collectionTokenAccount",
-            "type": "pubkey"
-          },
-          {
             "name": "isInitialized",
             "type": "bool"
           },
@@ -323,10 +245,6 @@ export type Nsgd = {
           },
           {
             "name": "mintBump",
-            "type": "u8"
-          },
-          {
-            "name": "collectionTokenAccountBump",
             "type": "u8"
           }
         ]
@@ -340,11 +258,6 @@ export type Nsgd = {
       "value": "[98, 97, 110, 107]"
     },
     {
-      "name": "collectionTokenAccountSeed",
-      "type": "bytes",
-      "value": "[99, 111, 108, 108, 101, 99, 116, 105, 111, 110, 95, 116, 111, 107, 101, 110, 95, 97, 99, 99, 111, 117, 110, 116]"
-    },
-    {
       "name": "metadataSeed",
       "type": "bytes",
       "value": "[109, 101, 116, 97, 100, 97, 116, 97]"
@@ -352,7 +265,7 @@ export type Nsgd = {
     {
       "name": "tokenMetadataUrl",
       "type": "string",
-      "value": "\"https://solana-content.jianhong.link/nsgd/token-metadata.json\""
+      "value": "\"https://cdn.jianhong.link/nsgd/token-metadata.json\""
     },
     {
       "name": "tokenMintSeed",
