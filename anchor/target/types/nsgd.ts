@@ -80,7 +80,20 @@ export type Nsgd = {
           }
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "liquidationThreshold",
+          "type": "u64"
+        },
+        {
+          "name": "liquidationBonus",
+          "type": "u64"
+        },
+        {
+          "name": "minHealthFactor",
+          "type": "u64"
+        }
+      ]
     },
     {
       "name": "initToken",
@@ -197,6 +210,64 @@ export type Nsgd = {
         }
       ],
       "args": []
+    },
+    {
+      "name": "updateBank",
+      "discriminator": [
+        92,
+        13,
+        8,
+        83,
+        4,
+        94,
+        46,
+        136
+      ],
+      "accounts": [
+        {
+          "name": "systemProgram",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "bank"
+          ]
+        },
+        {
+          "name": "bank",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  97,
+                  110,
+                  107
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidationThreshold",
+          "type": "u64"
+        },
+        {
+          "name": "liquidationBonus",
+          "type": "u64"
+        },
+        {
+          "name": "minHealthFactor",
+          "type": "u64"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -219,6 +290,11 @@ export type Nsgd = {
       "code": 6000,
       "name": "bankAlreadyInitialized",
       "msg": "Bank is already initialized. Cannot be initialized again."
+    },
+    {
+      "code": 6001,
+      "name": "bankNotInitialized",
+      "msg": "Bank is not initialized yet."
     }
   ],
   "types": [
@@ -234,6 +310,24 @@ export type Nsgd = {
           {
             "name": "tokenMint",
             "type": "pubkey"
+          },
+          {
+            "name": "liquidationThresholdPercentage",
+            "docs": [
+              "Percentage of liquidation threshold. Example: 10 represent 10%"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "liquidationBonusPercentage",
+            "docs": [
+              "Percentage of liquidation bonus. Example: 10 represent 10%"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "minHealthFactor",
+            "type": "u64"
           },
           {
             "name": "isInitialized",
@@ -265,7 +359,7 @@ export type Nsgd = {
     {
       "name": "tokenMetadataUrl",
       "type": "string",
-      "value": "\"https://cdn.jianhong.link/nsgd/token-metadata.json\""
+      "value": "\"https://bafybeihr2tdp7dicpk7pkjibx7rcm3rtkl4exakocziun5f3tjx6ywne2a.ipfs.w3s.link/token-metadata.json\""
     },
     {
       "name": "tokenMintSeed",
@@ -275,12 +369,12 @@ export type Nsgd = {
     {
       "name": "tokenName",
       "type": "string",
-      "value": "\"New SGD\""
+      "value": "\"New SGD 123\""
     },
     {
       "name": "tokenSymbol",
       "type": "string",
-      "value": "\"NSGD\""
+      "value": "\"NSGD123\""
     }
   ]
 };

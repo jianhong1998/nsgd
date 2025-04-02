@@ -8,7 +8,7 @@ import {
 } from 'solana-bankrun';
 import IDL from '../../target/idl/nsgd.json';
 import { APP_NAME } from '../constants';
-import { clusterApiUrl } from '@solana/web3.js';
+import { clusterApiUrl, Connection } from '@solana/web3.js';
 
 export type IProgramUtilConstructorParams =
   | {
@@ -90,6 +90,16 @@ export class ProgramUtil<T extends anchor.Idl> {
   public async getContext(): Promise<ProgramTestContext | null> {
     if (!this.program) await this.init();
     return this.context ?? null;
+  }
+
+  public async getConnection(): Promise<Connection> {
+    if (!this.anchorProvider && !this.bankrunProvider) await this.init();
+
+    if (this.anchorProvider) return this.anchorProvider.connection;
+    if (this.bankrunProvider)
+      return new Connection(this.bankrunProvider.connection.rpcEndpoint);
+
+    throw new Error('Failed to get connection');
   }
 
   public static generateConstructorParams(

@@ -4,4 +4,7 @@ use anchor_lang::prelude::*;
 pub enum ErrorCode {
   #[msg("Bank is already initialized. Cannot be initialized again.")]
   BankAlreadyInitialized,
+
+  #[msg("Bank is not initialized yet.")]
+  BankNotInitialized,
 }

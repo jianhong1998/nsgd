@@ -74,7 +74,20 @@
           }
         }
       ],
-      "args": []
+      "args": [
+        {
+          "name": "liquidation_threshold",
+          "type": "u64"
+        },
+        {
+          "name": "liquidation_bonus",
+          "type": "u64"
+        },
+        {
+          "name": "min_health_factor",
+          "type": "u64"
+        }
+      ]
     },
     {
       "name": "init_token",
@@ -191,6 +204,64 @@
         }
       ],
       "args": []
+    },
+    {
+      "name": "update_bank",
+      "discriminator": [
+        92,
+        13,
+        8,
+        83,
+        4,
+        94,
+        46,
+        136
+      ],
+      "accounts": [
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        },
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "bank"
+          ]
+        },
+        {
+          "name": "bank",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  98,
+                  97,
+                  110,
+                  107
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "args": [
+        {
+          "name": "liquidation_threshold",
+          "type": "u64"
+        },
+        {
+          "name": "liquidation_bonus",
+          "type": "u64"
+        },
+        {
+          "name": "min_health_factor",
+          "type": "u64"
+        }
+      ]
     }
   ],
   "accounts": [
@@ -213,6 +284,11 @@
       "code": 6000,
       "name": "BankAlreadyInitialized",
       "msg": "Bank is already initialized. Cannot be initialized again."
+    },
+    {
+      "code": 6001,
+      "name": "BankNotInitialized",
+      "msg": "Bank is not initialized yet."
     }
   ],
   "types": [
@@ -228,6 +304,24 @@
           {
             "name": "token_mint",
             "type": "pubkey"
+          },
+          {
+            "name": "liquidation_threshold_percentage",
+            "docs": [
+              "Percentage of liquidation threshold. Example: 10 represent 10%"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "liquidation_bonus_percentage",
+            "docs": [
+              "Percentage of liquidation bonus. Example: 10 represent 10%"
+            ],
+            "type": "u64"
+          },
+          {
+            "name": "min_health_factor",
+            "type": "u64"
           },
           {
             "name": "is_initialized",
@@ -259,7 +353,7 @@
     {
       "name": "TOKEN_METADATA_URL",
       "type": "string",
-      "value": "\"https://cdn.jianhong.link/nsgd/token-metadata.json\""
+      "value": "\"https://bafybeihr2tdp7dicpk7pkjibx7rcm3rtkl4exakocziun5f3tjx6ywne2a.ipfs.w3s.link/token-metadata.json\""
     },
     {
       "name": "TOKEN_MINT_SEED",
@@ -269,12 +363,12 @@
     {
       "name": "TOKEN_NAME",
       "type": "string",
-      "value": "\"New SGD\""
+      "value": "\"New SGD 123\""
     },
     {
       "name": "TOKEN_SYMBOL",
       "type": "string",
-      "value": "\"NSGD\""
+      "value": "\"NSGD123\""
     }
   ]
 }

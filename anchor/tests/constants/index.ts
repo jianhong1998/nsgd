@@ -1,5 +1,7 @@
 import { join } from 'path';
 
+export * from './seeds';
+
 /**
  * @note `APP_NAME` must be same with the IDL JSON file name in folder `./anchor/target/idl`
  */

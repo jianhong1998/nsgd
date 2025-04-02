@@ -1,3 +1,3 @@
-mod init;
+mod admin;
 
-pub use init::*;
+pub use admin::*;

@@ -89,7 +89,12 @@ pub struct InitToken<'info> {
   pub metadata: UncheckedAccount<'info>,
 }
 
-pub fn process_init_bank(context: Context<InitBank>) -> Result<()> {
+pub fn process_init_bank(
+  context: Context<InitBank>,
+  liquidation_threshold: u64,
+  liquidation_bonus: u64,
+  min_health_factor: u64,
+) -> Result<()> {
   let signer = &context.accounts.signer;
   let mint = &context.accounts.mint;
   let bank = &mut context.accounts.bank;
@@ -101,6 +106,9 @@ pub fn process_init_bank(context: Context<InitBank>) -> Result<()> {
   msg!("Processing bank initialization...");
   bank.authority = signer.key();
   bank.token_mint = mint.key();
+  bank.liquidation_threshold_percentage = liquidation_threshold;
+  bank.liquidation_bonus_percentage = liquidation_bonus;
+  bank.min_health_factor = min_health_factor;
   bank.is_initialized = true;
   bank.bump = context.bumps.bank;
   bank.mint_bump = context.bumps.mint;
