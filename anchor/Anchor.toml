@@ -6,7 +6,7 @@ resolution = true
 skip-lint = false
 
 [programs.localnet]
-nsgd = "CH75SSAuYPUUbudAcvm3bbTdfTkaUTPMYzVZZH6TNR9T"
+nsgd = "Cyq8xw2mP2hCy62voStd5WEHTkPC1yyMoNiv5267m2W5"
 
 [registry]
 url = "https://api.apr.dev"
@@ -16,7 +16,7 @@ cluster = "Localnet"
 wallet = "./tests/fixtures/keys/program-owner.json"
 
 [scripts]
-test = "../node_modules/.bin/vitest --dir ./"
+test = "../node_modules/.bin/vitest --run --dir ./"
 
 [test]
 startup_wait = 5000
